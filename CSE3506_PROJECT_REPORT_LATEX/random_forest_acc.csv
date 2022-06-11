@@ -1,0 +1,7 @@
+Metrics; Value;
+Accuracy ;1
+95% CI ;(0.9924, 1)
+    No Information Rate ;0.3499
+    P-Value [Acc > NIR] ;< 2.2e-16
+                  Kappa ;1
+ Mcnemar's Test P-Value ;NA

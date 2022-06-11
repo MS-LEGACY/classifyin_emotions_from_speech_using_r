@@ -1,0 +1,117 @@
+%
+% File acl2021.tex
+%
+%% Based on the style files for EMNLP 2020, which were
+%% Based on the style files for ACL 2020, which were
+%% Based on the style files for ACL 2018, NAACL 2018/19, which were
+%% Based on the style files for ACL-2015, with some improvements
+%%  taken from the NAACL-2016 style
+%% Based on the style files for ACL-2014, which were, in turn,
+%% based on ACL-2013, ACL-2012, ACL-2011, ACL-2010, ACL-IJCNLP-2009,
+%% EACL-2009, IJCNLP-2008...
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{acl2021}
+\usepackage{times}
+\usepackage{latexsym}
+\renewcommand{\UrlFont}{\ttfamily\small}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+\aclfinalcopy % Uncomment this line for the final submission
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+\newcommand\BibTeX{B\textsc{ib}\TeX}
+
+\title{ Using Automatic Speech Recognition Systems for transcription and Summary generation models for written summary of recorded lectures.}
+
+\author{Mrigank Shukla\\
+	19BCE1200  \\
+	B.Tech Computer Science and Engineering (SCOPE)\\
+	VIT Chennai. \\
+	\texttt{mrigank.shukla2019@vitstudent.ac.in} %\\\And
+	%Second Author \\
+%	Affiliation / Address line 1 \\
+%	Affiliation / Address line 2 \\
+%	Affiliation / Address line 3 \\
+%	\texttt{email@domain} \\}
+}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	\begin{abstract}
+		This is my project proposal report for the J component of the Natural Language Processing (CSE4022) course.
+		I propose integrating existing technologies and libraries to create a system that can assist in construction of a written summary for Recorded Lectures.
+		I want to employ an \textbf{Automatic Speech Recognition (ASR)} method to transform the recorded video lecture into its transcribed text counterpart.
+		The resulting transcription will then be placed into the\textbf{ summarising model}, which will produce the lecture summary.
+		This will aid in the rapid development of brief summaries for lengthy lectures, which will be valuable for MOOC platforms, colleges, students, and other online learning platforms. 
+	\end{abstract}
+	
+
+	
+	\section{Introduction}
+	
+	Recently, real time automatic speech recognition (ASR) services have been used by the common masses in their daily lives. They are used in smartphones as an alternative to written input for textual entry for query and search purpose.  There are many online services that have been developed by the giants of ASR fields using their custom machine learning models as well as open source projects. Google Cloud Speech-to-text API \citep{google-speech-to-text}, IBM Watson Speech-to-text cloud services \citep{ibmWatsonOverview}, Amazon's Transcribe \citep{amazontranscribe}. These services are paid and are custom built by the companies for the use cases of the customer. The companies provide some free service model that offers a limited time of speech to text. These are not enough for my use case of speech to text conversion of recorded lectures as they can be exceed the time limit for free use case model. The alternatives are open source libraries that can provide the same functionality but can also be used offline such as CMU Sphinx \citep{cmu-sphinx}, Mozilla's Deepspeech \citep{deepspeech-mozilla}, Facebook's Wav2letter \citep{wav2letter} and many more. These libraries are open source and have been maintained by communities of talented researchers and developers. They can be also configured or trained to suit the use case by building new models or tweaking pre-existing models. I am planning to use one of these models for the ASR transcription. The generated transcript of the recorded lecture can then be used for generating a summary of the lecture. In text summarization there are two different approaches: attractive and  extractive. In the attractive text summarization model, the model generates a summary which is similar to a human generated summary, the inherent meaning of the document is expressed in the summary which may not use the exact words of the text written in the original document. This approach is quite cumbersome as it requires training over large data and need good Graphical Processing Units (GPU). The next approach is that of extractive text summarization, this approach uses the content of the original document, sentence structure and phrases of text to generate a summary which has the important points of the document instead of the inherent meaning trying to be expressed by the author. There are plenty of open source libraries that are available for the purpose of text summarization spaCy \citep{spacy}, BERT \citep{devlin2018bert}, Pegasus \citep{zhang2020pegasus} that can be implemented using Hugging Face \citep{huggingface} transformers. The open source libraries also have the facility to train the model on our own dateset and to tweak the models which were pre trained. I am planning to use such models to generate textual summary for the transcription generated by the ASR model.
+	
+	
+	\section{Literature Survey}
+	 
+	\textbf{ Development of a Low-Latency and Real-Time
+	 Automatic Speech Recognition System} \citep{leow2020development}
+  The paper is very interesting, as it develops an ASR system for Japanese language by training a self-built model using the Kaldi toolkit \citep{povey2011kaldi} . The architecture of the system accepts the voice input passes it through a VAD (Voice Activity Detection ) system to remove the noise from the system. Then uses then uses Gstreamer which is a multimedia processing framework to pass the audio in a suitable format to the ASR model that the researchers had built. The ASR model built uses a hybrid model composed of HMM (Hidden Markov Models) and DNN (Deep Neural Networks) . The total hours of voice data collected was 750 hours and further for the language model a corpus consisting of 164K words was built. After training the model and testing it, they got an average word error rate of 6.45 as compared to Google API's 28.16. The conversion rate was also faster compared to the model as it was working offline when compared to the online Google API.  There was huge variations in Word error rate in the model based on the environment in which mic was kept as compared to Google's API which had a constant error rate due to being trained on different environment. \\
+  The research paper is very good and can be utilized to build ASR model which are focused on a group of speakers like I was thinking of training a model based on the voice of VIT teachers. The only constraint is that, the hardware requirement to train the model is very expensive. Hence if I choose to use Kaldi, I would have to rely on the pre trained model that are available to use.
+	 
+	\textbf{ Voice call analytics using natural language processing} \citep{sudarsan2019voice}
+	The research paper is quite interesting and informative for the process which I am trying to implement. The paper uses transcription of voice call to the call-centre and does analysis of generated transcript to get an idea about the quality of call as well as sentiment analysis of the text so as to assign calls with greater stress to higher priorities. The paper has used different API for text to speech conversion such as Facebook's WIT, Google's API and CMU Sphinx to convert the audio to text, then has used natural language processing on the generated text for sentiment analysis.
+	
+	\textbf{Using Speech Recognition Transcription to enhance learning from lecture recordings}\citep{soton419608}
+  The paper describes the usefulness of speech recognition and collaborative  editing for video transcription of online lectures that can help normal students as well as differently abled students. The paper described an architecture where automatic speech to text transcription is done, then students can help improve that transcription and also collaborate together to generate notes for that lecture. This can help in the growth of the whole class. A similar model if used can be very beneficial for generating corpus for text summarization as well as other NLP tasks.
+  
+  \textbf{Lecture2Note: Automatic Generation of Lecture Notes from Slide-Based Educational Videos}\citep{xu2019lecture2note}
+  This is an incredibly innovative research paper that actually leads to doubt our ability and contribution to the society as if I am just wasting my life. The researchers have implemented a novel strategy to generate lecture notes from lectures where slide presentations have been used without interruption of any other object such as lectures in Coursera. They have used neural networks, the basic idea is to extract text from the slides and then generate corresponding notes from it. The idea of selecting proper slides is that only frame of slides where there is a huge difference from the previous slide is selected. This gives high possibilities of selecting unique slides, text from these slides is then extracted to be used for forming lecture notes.
+  
+\textbf{  An adroit approach for extractive text summarization}\citep{sariki2019adroit}
+The paper presents a novel approach of extractive text summarization. The approach uses a combination of statistical and semantic approach. The first step applies keyword and key phrase extraction. The main idea is to use a new frequency calculation method, where the scores of each sentence is calculated as the score of the keywords and keyphrases. The score of keyphrase was calculated using the scores assigned to the words that were calculated using the frequency of the occurrence of words in the whole sentence and the co occurrence of the word with the keyphrase. The sentences can then be ranked by combining the scores calculated by the new approach and the normal term frequency method. This is one of way scoring the sentence. The other way of scoring sentences for extracting important sentence is to select sentences with high number of named entity score. "spaCy" library was used by researchers to find the number of "named entity" in the sentence, then the sentence was scored based upon it. The third way of scoring the sentence was to use to use "cue phrase" method. "Cue phrases" described by the researchers are the phrases that proceed some important information like "in conclusion", "hence demonstrated" etc. The sentences were scored on the basis of the amount of cue phrases. Combining the scores of all the scoring methods high ranking subset of sentences is generated based on the compression ratio given by the user. Similar sentences are removed, where similarity is calculated using WMD (Word Mover Distance)  \citep{kusner2015word}, a threshold of 40\% similarity was selected to allow for diverse sentence. Hence after removal of sentences the final summary consisting of high ranked sentence is output to the user. The model outperformed many well known models in the ROUGE  \citep{lin-2004-rouge} score.
+\\
+\textbf{Leveraging BERT for Extractive Text Summarization on Lectures} \citep{miller2019leveraging}
+
+The research paper has been aimed to give effective summary of the lecture notes that are available with standard online lectures. These lectures are available on platforms such as Udacity and Coursera where a written transcript of the lecture with additional explanations and theoretical concepts have been provided. The researcher has used BERT \citep{devlin-etal-2019-bert} to get the text embedding. These text embedding were then clustered using K-Means algorithm to identify the sentences that were closest to the centroid for summary selection.  The important thing to notice is that the model does not solely use BERT for the final summary, this can help me if BERT fails to work form my machine for end-to-end summarization due to it computational complexity.
+	\section{Tentative Proposed Methodology}
+	\label{sec:length}
+	I have not attempted such complex models before. I am studying about NLP for the first time in my life, but I feel that it has so much to offer and is contributing to the development of society in such a large way. Therefore I have tried to attempt to do a work that seems interesting but now feels very difficult, due to the complexity of research papers that take too much time to understand, even the libraries that implements these research paper are very advanced as in they use technologies such as PyTorch and TensorFlow that I have never used before. The hardware constraints for training and running models is also very high, so I will have to find optimal solutions that I will be able to use on my computer or for free on the web.  This is the reason that the methodology I have written is only tentative, if something fails to work or I am not able to implement it on my laptop, then I would have to change it.
+	Hence my main aim is to learn something new and try my best to at least be able to make this project work.
+	
+	\subsection{Speech to Text}
+	This is the part that serves as the core of the whole project. As I would have to convert the recorded lectures into sensible text that can later be used to extract a summary from. The main challenges I have identified during my literature review for this step will have to be looked into by me to find optimal solution.
+	\begin{itemize}
+		\item \textit{The availability of the speech to text libraries }: There are many available libraries for speech to text service in Python. These libraries are usually implementation of a research paper. The problem is that some are paid and some are free but the models provided are not that good. So selecting an appropriate library will be a task in itself.
+		\item \textit{Hardware Constraint} Many libraries such as Mozilla's DeepSpeech \citep{deepspeech-mozilla} use GPU's for speech to text processing. I have a below average GPU in my laptop that I am not sure will be compatible with the DeepSpeech. Also most of these libraries provide a facility to train the models on own data, this can be very helpful but I do not have the hardware for doing so, and Google Collab also gives a time of 12 hour only, with constant internet connection, this is not enough in training such models. So I will have to use pre-trained models.
+		\item \textit{Time Constraint} This is a time sensitive process, if the time taken to complete the whole process is much greater than the lecture itself. The system will not offer a greater advantage to the wide variety of users. The major time consuming steps I think will be the time taken to convert the video file to audio alone as we only need the audio files for the transcription process. Then comes the time taken to convert the audio files to text, here also there are time constraints as some libraries only offer a limited size of audio file for  text transcription especially in the case of online API such as Google and IBM Watson. Then the time taken for running offline models without GPU will be even more tough. 
+		\end{itemize}
+	Hence for this part of the project, I will have to test various libraries and compare there performance. If all offline libraries and models fail to work then I would have to opt for online alternatives. 
+	\subsection{Text Summarization}
+	This part of the project will produce a summary from the transcription that has been obtained by the speech to text part of the project. The model will use the text from the transcription and produce the summary. The process of producing summary has many alternatives. I can opt for plain statistical models such as  text rank \citep{mihalcea-2005-language}, lex rank \citep{steinberger-etal-2005-improving} etc. The problem with these models is that they are very old and do not perform that well. The alternatives to these models is that new models that are built on machine learning paradigms such as BERT, PEGASUS \citep{zhang2020pegasus}, RoBERTa \citep{liu2019roberta}. These models provide state of the art neural network for text summarization for both extractive and abstractive. I will have to understand the working of these models and search for implementations of these for pre-trained models as it will not be feasible to train these models locally. Also some of the models are very large and require a good GPU to function so that also will have to looked into. Some models only work on short text but not long documents, hence I would also have to work out the ways to solve those problems. After text summarization the final summary will be given that can be used by the student to understand the lecture quickly and effectively.
+	
+	
+	
+	\bibliographystyle{acl_natbib}
+	\bibliography{anthology,acl2021}
+	
+	%\appendix
+	
+	
+	
+\end{document}

@@ -1,0 +1,9 @@
+Evaluation Metrics ,Class:0,Class:1,Class:2,
+Sensitivity            ,0.5137,   0.6429,   0.4852
+Specificity            ,0.8338,   0.6540,   0.8312
+Pos Pred Value         ,0.5725,   0.4977,   0.6074
+Neg Pred Value         ,0.7983,   0.7744,   0.7500
+Prevalence             ,0.3023,   0.3478,   0.3499
+Detection Rate         ,0.1553,   0.2236,   0.1698
+Detection Prevalence   ,0.2712,   0.4493,   0.2795
+Balanced Accuracy      ,0.6738,   0.6484,   0.6582
